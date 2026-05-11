@@ -30,11 +30,17 @@ defmodule AgendaCli do
 
   defp process_command("add " <> args, contacts) do
     params = parse_args(args)
-    new_contacts = Contacts.add(contacts, params)
-    Store.save(new_contacts)
 
-    IO.puts("✅ Contato adicionado com sucesso!")
-    loop(new_contacts)
+    if Enum.empty?(params) do
+      IO.puts("❌ Uso inválido ou sem campos! Exemplo: add --name João --phone 1234")
+      loop(contacts)
+    else
+      new_contacts = Contacts.add(contacts, params)
+      Store.save(new_contacts)
+
+      IO.puts("✅ Contato adicionado com sucesso!")
+      loop(new_contacts)
+    end
   end
 
   defp process_command("edit " <> rest, contacts) do
@@ -133,10 +139,8 @@ defmodule AgendaCli do
 
   # --- Utilitários Puros de Parsing e Impressão ---
 
-  @doc """
-  Analisa os argumentos.
-  Exemplo: "--name Ana --phone 8599" vira %{name: "Ana", phone: "8599"}
-  """
+  # Analisa os argumentos.
+  # Exemplo: "--name Ana --phone 8599" vira %{name: "Ana", phone: "8599"}
   defp parse_args(args_str) do
     ~r/--(\w+)\s+(.*?)(?=\s+--|$)/
     |> Regex.scan(args_str)

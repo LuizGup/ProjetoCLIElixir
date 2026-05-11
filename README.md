@@ -21,7 +21,7 @@ Aplicação de Linha de Comando (CLI) para gerenciamento de contatos, escrita pu
 
 ### 1. Clone o repositório e baixe as dependências
 
-Se ainda não vez o clone:
+Se ainda não fez o clone:
 
 ```powershell
 git clone <url-do-repo>
@@ -29,22 +29,12 @@ cd ProjetoCLIElixir/agenda_cli
 mix deps.get
 ```
 
-### 2. Geração do Executável da CLI
+### 2. Inicie o sistema
 
-O projeto foi configurado com um `escript` no `mix.exs`. Para transformar em um único arquivo executável:
-
-```powershell
-mix escript.build
-```
-
-Isso gerará o binário chamado `agenda_cli` na raiz da pasta.
-
-### 3. Inicie o sistema
-
-No terminal terminal:
+No terminal, execute o comando abaixo para iniciar a CLI de forma interativa através do Mix:
 
 ```powershell
-./agenda_cli
+mix run -e "AgendaCli.main()"
 ```
 
 *(Ao rodá-lo pela primeira vez, uma nova base de dados persistente `contacts.json` será inicializada automaticamente ao adicionar novos registros).*
