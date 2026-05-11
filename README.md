@@ -1,19 +1,42 @@
-# AgendaCli - Projeto Elixir
+# Agenda de Contatos - Projeto Elixir (CLI)
 
-**Repositório:** [Adicione o link do GitHub aqui]
+**Repositório:** [https://github.com/LuizGup/ProjetoCLIElixir](https://github.com/LuizGup/ProjetoCLIElixir)
 
-Aplicação de Linha de Comando (CLI) para gerenciamento de contatos, escrita puramente em **Elixir**.
+Este projeto é uma aplicação de linha de comando interativa (CLI) dedicada ao gerenciamento prático de contatos pessoais. Inteiramente codificado em **Elixir**, o sistema foi desenvolvido como requisito prático e avaliativo da disciplina de **Programação Funcional** (T300), lecionada pelo Prof. Bruno Lopes na **Universidade de Fortaleza (UNIFOR)**.
 
-> Avaliação Prática da disciplina **T300 — Programação Funcional** (UNIFOR), Prof. Bruno Lopes.
-> Demonstra os pilares da programação funcional: pipe operator, pattern matching, recursão de cauda (tail recursion), imutabilidade e separação entre funções puras e side-effects.
+O objetivo acadêmico primário da implementação é demonstrar a aplicabilidade real dos paradigmas funcionais aplicados ao _Elixir_. Todo o núcleo da aplicação segue diretrizes rigorosas:
+* **Recursão de Cauda (Tail Recursion):** Utilizada no controle do loop da aplicação descartando varáveis globais ou modificadores mutáveis.
+* **Pattern Matching:** Utilizado na captura elegante e processamento de comandos recebidos na CLI contornando a complexidade de rotinas longas e IF/SWITCHs.
+* **Funções Puras x Impuras:** Separação clara entre a lógica de persistência e a lógica de mutação de listas funcionais.
+* **Pipe Operator (`|>`):** Encadeamento legível de informações e processamentos.
+
+---
+
+## Tecnologias Integradas
+
+- **Elixir (v1.19+)**: Linguagem principal na qual toda a regra de negócios funcional roda.
+- **Mix**: Compilador, gerenciador de tarefas e de pacotes, nativo do ecossistema do Elixir.
+- **Jason**: Biblioteca acoplada na dependência para realizar de maneira otimizada o Parse e Encoding da Serialização JSON no backend.
+
+---
+
+## A Estrutura do Contato
+
+Cada registro persistido no programa molda um Mapa com os seguintes identificadores:
+
+* **ID**: Único; estabelecido através da leitura exata do momento e Timestamp em Milissegundos (`UTC`).
+* **Nome**: Referência ou o nome completo associado a pessoa (`--name`).
+* **Empresa**: Organização de registro ou local de trabalho desse contato (`--company`).
+* **Telefone**: Formatação aberta a código de país ou estado (`--phone`).
+* **E-mail**: Endereço eletrônico validado ou link de acesso virtual (`--email`).
 
 ---
 
 ## Pré-requisitos
 
-- **Elixir** 1.19+
-- **Mix** (gerenciador incluído na instalação padrão do Elixir)
-- Biblioteca **Jason** (já mapeada nas dependências para lidar com o `contacts.json`)
+- **Elixir** 1.15+ / **Erlang/OTP** 26+
+- **Mix** (gerenciador incluído na instalação padrão)
+- Biblioteca **Jason** (já mapeada no `mix.exs`)
 
 ---
 
@@ -24,7 +47,7 @@ Aplicação de Linha de Comando (CLI) para gerenciamento de contatos, escrita pu
 Se ainda não fez o clone:
 
 ```powershell
-git clone <url-do-repo>
+git clone https://github.com/LuizGup/ProjetoCLIElixir.git
 cd ProjetoCLIElixir/agenda_cli
 mix deps.get
 ```
@@ -68,4 +91,17 @@ lib/
 │   ├── contacts.ex         # Funções puras: processam (add, edit, list) e não tocam ou alteram estados
 │   └── store.ex            # Funções impuras: lê e transcreve a agenda para `contacts.json` (Usando Jason)
 ```
+
+---
+
+## Persistência de Dados Direta
+
+Para manter a imutabilidade do registro, mas permitir seu desligamento sem perda, toda operação bem-sucedida de manipulação das listas (inclusão, alteração ou deleção) processa as novas matrizes e as converte no formato JSON.
+Essa substituição grava automaticamente os dados na raiz do seu projeto no arquivo `contacts.json`. O isolamento dessa "função impura" foi feito para evitar qualquer interrupção/corrupção no looping puro de listagem da memória virtual gerada pelo interpretador.
+
+---
+
+## Licença Acadêmica
+
+Código distribuído para escopos abertos com propósitos avaliativos do aluno e análise aberta da disciplina abordada (UNIFOR, T300). Sinta-se à vontade para revisar as funções e estudar os _Pattern Matchings_ documentados!
 
