@@ -1,8 +1,8 @@
-# Agenda de Contatos - Projeto Elixir (CLI)
+# AgendaClI - Projeto Elixir (CLI)
 
 **Repositório:** [https://github.com/LuizGup/ProjetoCLIElixir](https://github.com/LuizGup/ProjetoCLIElixir)
 
-Este projeto é uma aplicação de linha de comando interativa (CLI) dedicada ao gerenciamento prático de contatos pessoais. Inteiramente codificado em **Elixir**, o sistema foi desenvolvido como requisito prático e avaliativo da disciplina de **Programação Funcional** (T300), lecionada pelo Prof. Bruno Lopes na **Universidade de Fortaleza (UNIFOR)**.
+Este projeto é uma aplicação de linha de comando interativa (CLI) dedicada ao gerenciamento prático de contatos pessoais. Codificado em **Elixir**, o sistema foi desenvolvido como requisito prático e avaliativo da disciplina de **Programação Funcional** (T300), lecionada pelo Prof. Bruno Lopes na **Universidade de Fortaleza (UNIFOR)**.
 
 O objetivo acadêmico primário da implementação é demonstrar a aplicabilidade real dos paradigmas funcionais aplicados ao _Elixir_. Todo o núcleo da aplicação segue diretrizes rigorosas:
 * **Recursão de Cauda (Tail Recursion):** Utilizada no controle do loop da aplicação descartando varáveis globais ou modificadores mutáveis.
@@ -20,6 +20,14 @@ O objetivo acadêmico primário da implementação é demonstrar a aplicabilidad
 
 ---
 
+## Pré-requisitos
+
+- **Elixir** 1.15+ / **Erlang/OTP** 26+
+- **Mix** (gerenciador incluído na instalação padrão)
+- Biblioteca **Jason** (já mapeada no `mix.exs`)
+
+---
+
 ## A Estrutura do Contato
 
 Cada registro persistido no programa molda um Mapa com os seguintes identificadores:
@@ -29,14 +37,6 @@ Cada registro persistido no programa molda um Mapa com os seguintes identificado
 * **Empresa**: Organização de registro ou local de trabalho desse contato (`--company`).
 * **Telefone**: Formatação aberta a código de país ou estado (`--phone`).
 * **E-mail**: Endereço eletrônico validado ou link de acesso virtual (`--email`).
-
----
-
-## Pré-requisitos
-
-- **Elixir** 1.15+ / **Erlang/OTP** 26+
-- **Mix** (gerenciador incluído na instalação padrão)
-- Biblioteca **Jason** (já mapeada no `mix.exs`)
 
 ---
 
@@ -103,5 +103,5 @@ Essa substituição grava automaticamente os dados na raiz do seu projeto no arq
 
 ## Licença Acadêmica
 
-Código distribuído para escopos abertos com propósitos avaliativos do aluno e análise aberta da disciplina abordada (UNIFOR, T300). Sinta-se à vontade para revisar as funções e estudar os _Pattern Matchings_ documentados!
+Código distribuído para escopos abertos com propósitos avaliativos do aluno e análise aberta da disciplina abordada (UNIFOR, T300). Sinta-se à vontade para revisar as funções e estudar os _Pattern Matchings_!
 
